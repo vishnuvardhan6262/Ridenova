@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RideNova - Book a Ride</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="logo">
+        <div class="logo-icon">R</div>
+
+        <div class="logo-text">
+            Ride<span>Nova</span>
+        </div>
+    </div>
+
+    <div class="safe-text">
+        <span>✓</span> Safe & Reliable
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="booking-container">
+
+    <!-- ================= LEFT PANEL ================= -->
+
+    <section class="booking-panel">
+
+        <div class="heading-area">
+
+            <div class="small-heading">
+                RIDENOVA
+            </div>
+
+            <h1>Book Your Ride</h1>
+
+            <p>
+                Choose your pickup, destination and preferred ride.
+            </p>
+
+        </div>
+
+
+        <!-- ================= LOCATION ================= -->
+
+        <div class="location-box">
+
+            <!-- PICKUP -->
+
+            <div class="location-row">
+
+                <div class="location-dot pickup-dot"></div>
+
+                <div class="input-area">
+
+                    <label>Starting Point</label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="text"
+                            id="pickup"
+                            placeholder="Enter pickup location"
+                        >
+
+                        <!-- CURRENT LOCATION BUTTON -->
+
+                        <button
+                            type="button"
+                            id="currentLocationBtn"
+                            class="location-button"
+                            title="Use current location"
+                        >
+                            📍
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-line"></div>
+
+
+            <!-- DESTINATION -->
+
+            <div class="location-row">
+
+                <div class="location-dot destination-dot"></div>
+
+                <div class="input-area">
+
+                    <label>Destination</label>
+
+                    <input
+                        type="text"
+                        id="destination"
+                        placeholder="Enter destination"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= VEHICLES ================= -->
+
+        <div class="vehicle-section">
+
+            <h3>Select Ride</h3>
+
+            <div class="vehicle-options">
+
+                <!-- BIKE -->
+
+                <button
+                    class="vehicle-card active"
+                    data-vehicle="bike"
+                >
+
+                    <div class="vehicle-icon">
+                        🏍️
+                    </div>
+
+                    <div class="vehicle-info">
+
+                        <strong>Bike</strong>
+
+                        <span>
+                            Quick & Affordable
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="vehicle-price fare-price"
+                        data-fare="45"
+                    >
+                        ₹45
+                    </div>
+
+                </button>
+
+
+                <!-- AUTO -->
+
+                <button
+                    class="vehicle-card"
+                    data-vehicle="auto"
+                >
+
+                    <div class="vehicle-icon">
+                        🛺
+                    </div>
+
+                    <div class="vehicle-info">
+
+                        <strong>Auto</strong>
+
+                        <span>
+                            Comfortable Ride
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="vehicle-price fare-price"
+                        data-fare="75"
+                    >
+                        ₹75
+                    </div>
+
+                </button>
+
+
+                <!-- CAB -->
+
+                <button
+                    class="vehicle-card"
+                    data-vehicle="cab"
+                >
+
+                    <div class="vehicle-icon">
+                        🚕
+                    </div>
+
+                    <div class="vehicle-info">
+
+                        <strong>Cab</strong>
+
+                        <span>
+                            Premium Comfort
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="vehicle-price fare-price"
+                        data-fare="150"
+                    >
+                        ₹150
+                    </div>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= BOOK BUTTON ================= -->
+
+        <button
+            id="bookRideBtn"
+            class="book-btn"
+        >
+            Book Ride
+            <span>→</span>
+        </button>
+
+
+        <!-- ================= FINDING RIDER ================= -->
+
+        <div
+            id="rideStatus"
+            class="ride-status hidden"
+        >
+
+            <div class="loading-spinner"></div>
+
+            <div>
+
+                <strong id="statusTitle">
+                    Finding Rider...
+                </strong>
+
+                <p id="statusText">
+                    Looking for nearby riders
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIDER CARD ================= -->
+
+        <div
+            id="riderCard"
+            class="rider-card hidden"
+        >
+
+            <div class="success-message">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h2>
+                        Ride Booked Successfully
+                    </h2>
+
+                    <p>
+                        Your rider has accepted the ride.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="rider-details">
+
+                <div class="rider-profile">
+
+                    <div class="rider-avatar">
+                        RK
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Rahul Kumar
+                        </h3>
+
+                        <div class="rating">
+                            ★ 4.8
+                            <span>
+                                • 1,245 rides
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ride-info">
+
+                    <div>
+
+                        <span>
+                            Vehicle
+                        </span>
+
+                        <strong id="riderVehicle">
+                            Bike
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Vehicle No.
+                        </span>
+
+                        <strong>
+                            TS 09 AB 4587
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            Estimated Arrival
+                        </span>
+
+                        <strong>
+                            3 mins
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    id="cancelRideBtn"
+                    class="cancel-btn"
+                >
+                    Cancel Ride
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MAP ================= -->
+
+    <section class="map-section">
+
+        <div class="map">
+
+            <!-- ROADS -->
+
+            <div class="road road-1"></div>
+            <div class="road road-2"></div>
+            <div class="road road-3"></div>
+            <div class="road road-4"></div>
+            <div class="road road-5"></div>
+
+            <div class="road-small road-small-1"></div>
+            <div class="road-small road-small-2"></div>
+            <div class="road-small road-small-3"></div>
+
+
+            <!-- BUILDINGS -->
+
+            <div class="building b1"></div>
+            <div class="building b2"></div>
+            <div class="building b3"></div>
+            <div class="building b4"></div>
+            <div class="building b5"></div>
+            <div class="building b6"></div>
+
+
+            <!-- LABELS -->
+
+            <span class="map-label label-1">
+                City Center
+            </span>
+
+            <span class="map-label label-2">
+                Market Road
+            </span>
+
+            <span class="map-label label-3">
+                Central Avenue
+            </span>
+
+            <span class="map-label label-4">
+                Lake View
+            </span>
+
+
+            <!-- ROUTE -->
+
+            <svg
+                class="route-svg"
+                viewBox="0 0 800 600"
+            >
+
+                <path
+                    class="route-shadow"
+                    d="M150 420 C230 370 250 310 330 340 C410 370 440 240 520 250 C600 260 620 190 680 150"
+                />
+
+                <path
+                    class="route-line"
+                    d="M150 420 C230 370 250 310 330 340 C410 370 440 240 520 250 C600 260 620 190 680 150"
+                />
+
+            </svg>
+
+
+            <!-- PICKUP -->
+
+            <div class="map-marker pickup-marker">
+
+                <div class="marker-pin">
+                    ●
+                </div>
+
+                <div class="marker-label">
+                    Pickup
+                </div>
+
+            </div>
+
+
+            <!-- DESTINATION -->
+
+            <div class="map-marker destination-marker">
+
+                <div class="marker-pin destination-pin">
+                    ●
+                </div>
+
+                <div class="marker-label">
+                    Destination
+                </div>
+
+            </div>
+
+
+            <!-- VEHICLE -->
+
+            <div
+                id="vehicleMarker"
+                class="vehicle-marker"
+            >
+                🏍️
+            </div>
+
+
+            <!-- MAP CONTROLS -->
+
+            <div class="map-controls">
+
+                <button id="zoomIn">
+                    +
+                </button>
+
+                <button id="zoomOut">
+                    −
+                </button>
+
+            </div>
+
+
+            <div class="dummy-map-badge">
+                Simulated Map
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= RIDE BOOKED POPUP ================= -->
+
+<div
+    id="rideBookedModal"
+    class="modal hidden"
+>
+
+    <div class="modal-box booked-popup">
+
+        <div class="popup-success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Ride Booked Successfully!
+        </h2>
+
+        <p>
+            Your rider has accepted your ride.
+        </p>
+
+        <div class="popup-ride-badge">
+            🚕 Your rider is on the way
+        </div>
+
+        <button
+            id="continueRideBtn"
+            class="popup-primary-btn"
+        >
+            View Rider Details
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= CANCEL REASON POPUP ================= -->
+
+<div
+    id="cancelReasonModal"
+    class="modal hidden"
+>
+
+    <div class="modal-box cancellation-box">
+
+        <div class="cancel-popup-icon">
+            ?
+        </div>
+
+        <h2>
+            Cancel Ride?
+        </h2>
+
+        <p>
+            Why are you cancelling your ride?
+        </p>
+
+
+        <div class="cancel-reasons">
+
+            <label class="reason-option">
+
+                <input
+                    type="radio"
+                    name="cancelReason"
+                    value="Changed my plans"
+                >
+
+                <span>
+                    Changed my plans
+                </span>
+
+            </label>
+
+
+            <label class="reason-option">
+
+                <input
+                    type="radio"
+                    name="cancelReason"
+                    value="Driver is taking too long"
+                >
+
+                <span>
+                    Driver is taking too long
+                </span>
+
+            </label>
+
+
+            <label class="reason-option">
+
+                <input
+                    type="radio"
+                    name="cancelReason"
+                    value="Found another ride"
+                >
+
+                <span>
+                    Found another ride
+                </span>
+
+            </label>
+
+
+            <label class="reason-option">
+
+                <input
+                    type="radio"
+                    name="cancelReason"
+                    value="Wrong pickup location"
+                >
+
+                <span>
+                    Wrong pickup location
+                </span>
+
+            </label>
+
+
+            <label class="reason-option">
+
+                <input
+                    type="radio"
+                    name="cancelReason"
+                    value="Other"
+                >
+
+                <span>
+                    Other
+                </span>
+
+            </label>
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                id="keepRideBtn"
+                class="keep-btn"
+            >
+                Keep Ride
+            </button>
+
+            <button
+                id="confirmCancelBtn"
+                class="confirm-cancel"
+            >
+                Confirm Cancellation
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= RIDE CANCELLED POPUP ================= -->
+
+<div
+    id="rideCancelledModal"
+    class="modal hidden"
+>
+
+    <div class="modal-box cancelled-popup">
+
+        <div class="cancelled-icon">
+            ✓
+        </div>
+
+        <h2>
+            Ride Cancelled
+        </h2>
+
+        <p>
+            Your ride has been cancelled successfully.
+        </p>
+
+        <div class="cancelled-note">
+            We hope to see you again soon.
+        </div>
+
+        <button
+            id="closeCancelledBtn"
+            class="popup-primary-btn"
+        >
+            Done
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
